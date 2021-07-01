@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Button, Input } from 'antd';
 import css from './style.module.less';
 
-const socket = new WebSocket('ws://127.0.0.1:3999');
+const address = '10.11.4.195:3999';
+
+const socket = new WebSocket(`ws://${address}`);
 
 const Chat = () => {
 
@@ -15,7 +17,7 @@ const Chat = () => {
 
     const handleSend = () => {
         socket.send(message);
-        // setMessage('');
+        setMessage('');
     }
 
     const handleMessageChange = (v) => {
@@ -45,7 +47,7 @@ const Chat = () => {
                         }
                     </div>
                     <div className={css.editor}>
-                        <Input.TextArea bordered={false} className={css.textArea} value={message} onChange={handleMessageChange}/>
+                        <Input.TextArea bordered={false} className={css.textArea} value={message} onChange={handleMessageChange} onPressEnter={handleSend}/>
                         <div className={css.btnContainer}>
                             <Button  size={'small'} onClick={handleSend} className={css.sendBtn}>Send</Button>
                         </div>
@@ -53,7 +55,7 @@ const Chat = () => {
                 </div>
             </div>
             <div className={css.foot}>
-                <span>服务器状态:{status}</span>
+                <span>服务器状态:[{address}]{status}</span>
             </div>
         </div>
     );
