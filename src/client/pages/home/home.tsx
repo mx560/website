@@ -1,8 +1,8 @@
 import React from 'react';
-import css from './homePage.module.css';
-import logo from '../../images/logo.svg';
+import css from './home.module.css';
+import logo from '../../../images/logo.svg';
 
-const HomePage = () => {
+const Home = () => {
 
     return (
         <>
@@ -19,4 +19,4 @@ const HomePage = () => {
 };
 
 
-export default HomePage;
+export default Home;

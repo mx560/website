@@ -1,5 +1,5 @@
 import React from 'react';
-import HomePage from './client/homePage/homePage';
+import Home from './client/pages/home/home';
 import Chat from './client/pages/chat';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
@@ -16,7 +16,7 @@ function App() {
         <ConfigProvider locale={zhCN}>
             <Router>
                 <Switch>
-                    <Route exact path="/" component={HomePage}/>
+                    <Route exact path="/" component={Home}/>
                     <Route path="/chat" component={Chat}/>
                     <Route path="*">
                         <div>404</div>

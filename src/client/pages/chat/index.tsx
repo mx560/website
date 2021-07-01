@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Input } from 'antd';
-import css from './style.module.css';
+import css from './style.module.less';
 
 const socket = new WebSocket('ws://127.0.0.1:3999');
 
@@ -36,13 +36,20 @@ const Chat = () => {
             <div className={css.main}>
                 <div className={css.chatList}></div>
                 <div className={css.content}>
-                    {
-                        receiveMessage.map((msg, index) => {
-                            return <div className={css.message} key={`received_message_${index}`}>{msg}</div>
-                        })
-                    }
-                    <Input value={message} onChange={handleMessageChange} style={{width: 180, marginRight: 12}}/>
-                    <Button type={'primary'} onClick={handleSend}>Send</Button>
+                    <div className={css.head}></div>
+                    <div className={css.messages}>
+                        {
+                            receiveMessage.map((msg, index) => {
+                                return <div className={css.message} key={`received_message_${index}`}>{msg}</div>
+                            })
+                        }
+                    </div>
+                    <div className={css.editor}>
+                        <Input.TextArea bordered={false} className={css.textArea} value={message} onChange={handleMessageChange}/>
+                        <div className={css.btnContainer}>
+                            <Button  size={'small'} onClick={handleSend} className={css.sendBtn}>Send</Button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className={css.foot}>
